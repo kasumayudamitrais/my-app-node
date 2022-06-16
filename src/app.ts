@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import express from 'express';
 //import {routes} from './router/router';
 import { Config } from './config.js'
@@ -154,3 +155,46 @@ app.use('/graphql', graphqlHTTP({
 app.listen(PORT, () =>{
     console.log(`Server is running in http://localhost:${PORT}`);
 })
+=======
+import express from 'express'
+import { Config } from './config.js'
+import { graphqlHTTP } from 'express-graphql'
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
+import usertype from './usertype.js'
+import userdata from './fakedata.js'
+import lodash from 'lodash'
+
+const app = express()
+const PORT = Config.port || 2222
+
+const queryType = new GraphQLObjectType({
+  name: 'Query',
+  fields: {
+    user: {
+      type: usertype,
+      args: {
+        name: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_, { name }) => {
+        return lodash.filter(userdata, { name: name })[0]
+      },
+    },
+  },
+})
+
+const schema = new GraphQLSchema({ query: queryType })
+
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+  }),
+)
+
+app.listen(PORT, () => {
+  //console.log(`Server is running in http://localhost:${PORT}`);
+})
+>>>>>>> 3ac922eeb4f02f2ebf814f43c01d0956dae7c1a3
