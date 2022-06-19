@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -9,7 +9,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "declaration": true,
-    "lib": ["es2018", "esnext.asynciterable"],
+    "lib": ["esnext", "esnext.asynciterable"],
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,

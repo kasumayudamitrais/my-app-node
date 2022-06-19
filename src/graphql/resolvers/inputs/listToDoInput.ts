@@ -1,9 +1,11 @@
-import "reflect-metadata";
 import ListToDo from "src/graphql/model/listToDo";
 import { Args, Field, InputType, Query } from "type-graphql";
 
-@InputType()
+@InputType({description: "New list to do"})
 class ListToDoInput implements Partial<ListToDo>{
+
+    @Field()
+    id!: string;
 
     @Field()
     title!: string;
@@ -12,7 +14,7 @@ class ListToDoInput implements Partial<ListToDo>{
     content!: string;
 
     @Field({nullable: true})
-    isCompleted?: boolean | undefined;
+    isCompleted?: boolean;
 
 }
 

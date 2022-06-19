@@ -1,17 +1,28 @@
-import "reflect-metadata";
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import User from './user';
 
-@ObjectType({description: "List to do"})
-class Address{
+@Entity()
+@ObjectType({description: "User address"})
+class Address extends BaseEntity{
+    @Field(()=>ID)
+    @PrimaryGeneratedColumn()
+    id!: string;
 
     @Field()
-    streetNo: string;
+    @Column()
+    streetNo!: string;
 
     @Field()
-    streetName: string;
+    @Column()
+    streetName!: string;
 
-    @Field()
-    buildingType: string;
+    @Field({nullable: true })
+    @Column()
+    buildingType?: string;
+
+    @ManyToOne(type=>User, user=>user.address)
+    user: User | undefined;
 
 }
 

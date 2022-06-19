@@ -1,27 +1,34 @@
-import "reflect-metadata";
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ObjectType, ID } from 'type-graphql';
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Address from "./address";
-import ListToDo from "./list-todo";
+import ListToDo from "./listToDo";
 
+@Entity()
 @ObjectType({description: "User data"})
-class User{
-  @Field()
-  id: string;
+class User extends BaseEntity{
+  @Field(()=>ID)
+  @PrimaryGeneratedColumn()
+  id!: string;
 
   @Field()
-  name: string;
+  @Column()
+  name!: string;
 
   @Field()
-  age: number;
+  @Column()
+  age!: number;
 
   @Field()
-  email: string;
+  @Column()
+  email!: string;
 
-  @Field()
-  address: Address;
+  @Field(type=>[Address], {nullable: true})
+  @OneToMany(type=>Address, address => address.user)
+  address?: Address[];
 
   @Field(type=>[ListToDo], {nullable: true})
-  listToDo?: ListToDo[];
+  @OneToMany(type=>ListToDo, listToDo => listToDo.user)
+  agendas?: ListToDo[];
 
 }
 
