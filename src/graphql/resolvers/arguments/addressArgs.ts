@@ -3,11 +3,11 @@ import { ArgsType, Field } from "type-graphql";
 
 @ArgsType()
 class AddressArgs{
-    @Field()
-    streetNo!: string;
+    @Field({nullable: true })
+    streetNo?: string;
 
-    @Field()
-    streetName!: string;
+    @Field({nullable: true })
+    streetName?: string;
 
     @Field({nullable: true })
     buildingType?: string;

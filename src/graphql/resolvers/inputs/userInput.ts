@@ -1,12 +1,11 @@
-import User from "src/graphql/model/user";
-import userInputType from "src/userinputtype";
+import User from '../../../model/user';
 import { Args, Field, InputType, Query } from "type-graphql";
 
 @InputType({description:"New user"})
 class UserInput implements Partial<User>{
     
-    @Field()
-    id!: string;
+    @Field({nullable:true})
+    id?: number;
 
     @Field()
     name!: string;

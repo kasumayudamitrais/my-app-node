@@ -1,6 +1,6 @@
+import DataSource from "../../dataSource";
 import { Arg, Args, Mutation, Query, Resolver } from "type-graphql";
-import ListToDo from "../model/listToDo";
-import User from "../model/user";
+import User from '../../model/user';
 import UserArgs from "./arguments/userArgs";
 import UserInput from "./inputs/userInput";
 
@@ -26,15 +26,16 @@ class UserResolver{
 
     @Mutation(()=>User)
     async addUser(@Arg("data") newUser: UserInput){
-        let newUserData = new User();
-        newUserData.name = newUser.name
-        newUserData.email = newUser.email;
-        newUserData.age = newUser.age;
-        
-        const result = User.create(newUserData);
-        await result.save();
 
-        return newUserData;
+        const newUserData = DataSource.manager.create(User,{
+            name : newUser.name,
+            email : newUser.email,
+            age : newUser.age
+        });
+
+        return await DataSource.manager.save(newUserData);
     }
 
 }
+
+export default UserResolver;

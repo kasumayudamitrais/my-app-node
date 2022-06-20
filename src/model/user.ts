@@ -8,19 +8,19 @@ import ListToDo from "./listToDo";
 class User extends BaseEntity{
   @Field(()=>ID)
   @PrimaryGeneratedColumn()
-  id!: string;
+  id!: number;
 
-  @Field()
+  @Field({nullable:true})
   @Column()
-  name!: string;
+  name?: string;
 
-  @Field()
+  @Field({nullable:true})
   @Column()
-  age!: number;
+  age?: number;
 
-  @Field()
+  @Field({nullable:true})
   @Column()
-  email!: string;
+  email?: string;
 
   @Field(type=>[Address], {nullable: true})
   @OneToMany(type=>Address, address => address.user)

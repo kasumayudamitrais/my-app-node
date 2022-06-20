@@ -12,13 +12,13 @@ class UserArgs{
     @Max(50)
     take = 25;
 
-    @Field()
+    @Field({nullable:true})
     name?: string;
 
-    @Field()
+    @Field({nullable:true})
     age?: number;
     
-    @Field()
+    @Field({nullable:true})
     email?: string;
 
     get startIndex():number{

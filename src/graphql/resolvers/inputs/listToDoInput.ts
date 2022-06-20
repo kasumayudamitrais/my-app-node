@@ -1,4 +1,4 @@
-import ListToDo from "src/graphql/model/listToDo";
+import ListToDo from "src/model/listToDo.js";
 import { Args, Field, InputType, Query } from "type-graphql";
 
 @InputType({description: "New list to do"})

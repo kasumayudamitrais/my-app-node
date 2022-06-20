@@ -1,5 +1,5 @@
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import ListToDo from "../model/listToDo";
+import ListToDo from "../../model/listToDo.js";
 import ListToDoArgs from "./arguments/listTodoArgs"
 import listToDoInput from "./inputs/listToDoInput"
 
