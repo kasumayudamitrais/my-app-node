@@ -4,7 +4,7 @@ import { Args, Field, InputType, Query } from "type-graphql";
 @InputType({description: "New list to do"})
 class ListToDoInput implements Partial<ListToDo>{
 
-    @Field()
+    @Field({nullable: true})
     id!: number;
 
     @Field()

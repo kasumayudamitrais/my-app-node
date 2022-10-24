@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import User from './user.js';
 
 @Entity()
@@ -23,7 +23,7 @@ class ListToDo extends BaseEntity{
 
     //@Field()
     @ManyToOne(type=>User, user => user.agendas)
-    @JoinColumn()
+    //@JoinColumn()
     user: User | undefined | null;
 
     @CreateDateColumn({type: 'timestamp', default:()=>'CURRENT_TIMESTAMP', readonly: true})

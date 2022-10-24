@@ -1,12 +1,13 @@
 import dataSource from "src/dataSource.js";
-import User from "../../model/user.js";
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import ListToDo from "../../model/listToDo.js";
 import ListToDoArgs from "./arguments/listTodoArgs.js"
 import listToDoInput from "./inputs/listToDoInput.js"
+import User from "../../model/user.js";
 
 @Resolver(of => ListToDo)
 class ListToDoResolver{
+    
     @Query(returns => [ListToDo])
     async listToDos(@Args(){ title, content, isCompleted, startIndex, endIndex }: ListToDoArgs){
         let listToDos = await ListToDo.find();
@@ -27,22 +28,24 @@ class ListToDoResolver{
     }
 
     @Mutation(()=>ListToDo)
-    async addListToDo(@Arg("data") newListToDo: listToDoInput){
+    async addListToDo(@Arg("input") newListToDo: listToDoInput){
         let listToDoData = new ListToDo();
         
         listToDoData.title = newListToDo.title;
         listToDoData.content = newListToDo.content;
         listToDoData.isCompleted = newListToDo.isCompleted;
-        
-        dataSource.manager.findOneBy(User,{id:newListToDo.userId}).then(values => {
+
+        let user = User.findOneBy({id: newListToDo.userId}).then(values=>{
+            console.log(values);
             listToDoData.user = values;
         });
-
+        
         const result = ListToDo.create(listToDoData);
-        await result.save()
+        await result.save();
 
         return result;
     }
+
 }
 
 export default ListToDoResolver

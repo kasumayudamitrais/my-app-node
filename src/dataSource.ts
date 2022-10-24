@@ -18,9 +18,17 @@ const dataSource = new DataSource({
     logging:true,
     entities: [
         //User
-        __dirname + "/../dist/model/*.js",
+        //__dirname + "/../dist/model/*.js",
         __dirname + "/model/*.ts"
     ]
 });
+
+// if (dataSource.isInitialized == false){
+//     dataSource.initialize().then(()=>{
+//         console.log("Data Source has been initialized!")
+//     }).catch((err)=>{
+//         console.error("Error during Data Source initialization", err)
+//     });
+// }
 
 export default dataSource;
