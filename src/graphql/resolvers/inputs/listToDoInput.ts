@@ -5,7 +5,7 @@ import { Args, Field, InputType, Query } from "type-graphql";
 class ListToDoInput implements Partial<ListToDo>{
 
     @Field()
-    id!: string;
+    id!: number;
 
     @Field()
     title!: string;
@@ -15,6 +15,9 @@ class ListToDoInput implements Partial<ListToDo>{
 
     @Field({nullable: true})
     isCompleted?: boolean;
+
+    @Field()
+    userId!:number
 
 }
 

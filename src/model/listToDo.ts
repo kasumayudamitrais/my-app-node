@@ -1,14 +1,13 @@
 import { Field, ID, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import User from './user';
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import User from './user.js';
 
 @Entity()
 @ObjectType({description: "List to do data"})
 class ListToDo extends BaseEntity{
-
     @Field(()=> ID )
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Field()
     @Column()
@@ -22,9 +21,16 @@ class ListToDo extends BaseEntity{
     @Column()
     isCompleted?: boolean;
 
+    //@Field()
     @ManyToOne(type=>User, user => user.agendas)
-    user: User | undefined;
+    @JoinColumn()
+    user: User | undefined | null;
 
+    @CreateDateColumn({type: 'timestamp', default:()=>'CURRENT_TIMESTAMP', readonly: true})
+    createdAt!: Date;
+
+    @UpdateDateColumn({type:'timestamp', default:()=>'CURRENT_TIMESTAMP'})
+    updatedAt!: Date;
 }
 
 export default ListToDo;

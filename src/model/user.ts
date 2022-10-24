@@ -1,7 +1,7 @@
 import { Field, ObjectType, ID } from 'type-graphql';
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import Address from "./address";
-import ListToDo from "./listToDo";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import Address from "./address.js";
+import ListToDo from "./listToDo.js";
 
 @Entity()
 @ObjectType({description: "User data"})
@@ -28,6 +28,7 @@ class User extends BaseEntity{
 
   @Field(type=>[ListToDo], {nullable: true})
   @OneToMany(type=>ListToDo, listToDo => listToDo.user)
+  @JoinColumn()
   agendas?: ListToDo[];
 
 }

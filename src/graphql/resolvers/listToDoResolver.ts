@@ -1,7 +1,9 @@
+import dataSource from "src/dataSource.js";
+import User from "../../model/user.js";
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import ListToDo from "../../model/listToDo.js";
-import ListToDoArgs from "./arguments/listTodoArgs"
-import listToDoInput from "./inputs/listToDoInput"
+import ListToDoArgs from "./arguments/listTodoArgs.js"
+import listToDoInput from "./inputs/listToDoInput.js"
 
 @Resolver(of => ListToDo)
 class ListToDoResolver{
@@ -31,6 +33,10 @@ class ListToDoResolver{
         listToDoData.title = newListToDo.title;
         listToDoData.content = newListToDo.content;
         listToDoData.isCompleted = newListToDo.isCompleted;
+        
+        dataSource.manager.findOneBy(User,{id:newListToDo.userId}).then(values => {
+            listToDoData.user = values;
+        });
 
         const result = ListToDo.create(listToDoData);
         await result.save()

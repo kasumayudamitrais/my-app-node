@@ -1,8 +1,8 @@
 import { Arg, Args, Ctx, Mutation, Query, Resolver } from "type-graphql";
 import { Context } from "vm";
 import Address from "../../model/address.js";
-import AddressArgs from "./arguments/addressArgs";
-import AddressInput from "./inputs/addressInput";
+import AddressArgs from "./arguments/addressArgs.js";
+import AddressInput from "./inputs/addressInput.js";
 
 @Resolver(of => Address)
 class AddressResolver{

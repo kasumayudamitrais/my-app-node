@@ -1,4 +1,4 @@
-import User from '../../../model/user';
+import User from '../../../model/user.js';
 import { Args, Field, InputType, Query } from "type-graphql";
 
 @InputType({description:"New user"})

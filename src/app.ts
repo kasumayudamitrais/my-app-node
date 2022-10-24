@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
-import schema from './graphql/schema'
-import dataSource from "./dataSource";
+import schema from './graphql/schema.js'
+import dataSource from "./dataSource.js";
 
 const app = express()
 const PORT = 3000;

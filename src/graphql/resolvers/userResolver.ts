@@ -1,8 +1,8 @@
-import DataSource from "../../dataSource";
+import DataSource from "../../dataSource.js";
 import { Arg, Args, Mutation, Query, Resolver } from "type-graphql";
-import User from '../../model/user';
-import UserArgs from "./arguments/userArgs";
-import UserInput from "./inputs/userInput";
+import User from '../../model/user.js';
+import UserArgs from "./arguments/userArgs.js";
+import UserInput from "./inputs/userInput.js";
 
 @Resolver(of=>User)
 class UserResolver{
